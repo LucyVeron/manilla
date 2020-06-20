@@ -1,0 +1,66 @@
+.container {
+  height: 100vw;
+}
+.folder-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem;
+  .folder {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    width: 100px;
+    height: 100px;
+    & mat-icon {
+      position: absolute;
+      top: -3px;
+      left: 0px;
+      font-size: 100px;
+    }
+    & small {
+      position: absolute;
+      bottom: -15px;
+      text-align: center;
+    }
+  }
+}
+button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+::ng-deep {
+  .ngx-contextmenu {
+    & .dropdown-menu {
+      border-radius: 3px;
+      padding: 0;
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+        0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    }
+    & mat-icon {
+      font-size: 22px;
+    }
+    & li {
+      display: block;
+      border-bottom: 1px solid lightgrey;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    & a {
+      display: flex;
+      align-items: center;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      color: darkslategrey;
+      background: white;
+      &:hover {
+        background-color: ghostwhite;
+      }
+    }
+  }
+}
