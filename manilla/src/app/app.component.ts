@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ContextMenuComponent } from 'ngx-contextmenu';
+import { ChangeNameDialogComponent } from './change-name-dialog/change-name-dialog.component';
 
 export interface Item {
   icon: string;
@@ -16,9 +18,11 @@ export class AppComponent {
   @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 
   public items: Item[] = [];
-  constructor() { }
+  public changeNameDialogRef: MatDialogRef<ChangeNameDialogComponent>;
 
-  addItem(type: string) {
+  constructor(public dialog: MatDialog) { }
+
+  public addItem(type: string) {
     switch (type) {
       case 'file':
         this.items.push({
@@ -35,6 +39,16 @@ export class AppComponent {
       default:
         break;
     }
+  }
+
+  public editNameDialog(target: Item) {
+    const dialogRef = this.changeNameDialogRef = this.dialog.open(ChangeNameDialogComponent, {
+      data: target
+    });
+  }
+
+  public deleteItem(event: any) {
+    this.items.splice(event.item.index, 1);
   }
 
 }

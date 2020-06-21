@@ -1,14 +1,14 @@
 <div class="container" [contextMenu]="basicMenu">
     <mat-toolbar color="primary">My Documents</mat-toolbar>
     <div class="folder-wrapper">
-        <div class="folder" *ngFor="let item of items;">
+        <div class="folder" *ngFor="let item of items; let i = index;" [contextMenu]="itemMenu" [contextMenuSubject]="{item: item, index: i}">
             <mat-icon color="accent">{{item.icon}}</mat-icon>
             <small>{{item.name}}</small>
         </div>
     </div>
 </div>
 
-<context-menu>
+<context-menu #baiscMenu>
     <ng-template contextMenuItem (execute)="addItem('folder')">
         <mat-icon>add</mat-icon>
         <span>New folder</span>
@@ -16,5 +16,16 @@
     <ng-template contextMenuItem (execute)="addItem('file')">
         <mat-icon>add</mat-icon>
         <span>New file</span>
+    </ng-template>
+</context-menu>
+
+<context-menu #itemMenu>
+    <ng-template contextMenuItem (execute)="editNameDialog($event.item)">
+        <mat-icon>edit</mat-icon>
+        <span>Rename</span>
+    </ng-template>
+    <ng-template contextMenuItem (execute)="deleteItem($event)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
     </ng-template>
 </context-menu>
